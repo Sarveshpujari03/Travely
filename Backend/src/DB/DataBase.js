@@ -2,6 +2,8 @@ import mongoose from 'mongoose'
 import ErrorHandler from '../Utils/ErrorHandler.js'
 import { DataBase_Name } from '../constants.js'
 
+//connectiong data to the mongo db
+
 const DataBase_Connection = async () => {
     try {
         
