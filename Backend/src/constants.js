@@ -1,1 +1,0 @@
-export const DataBase_Name = 'Trip-Planner-Ai'
