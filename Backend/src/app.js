@@ -19,7 +19,17 @@ app.use(express.static('public'));
 //adding api key or routes from here
 
 import userRouter from './Routes/user.routes.js'
+import tripRouter from './Routes/trip.routes.js'
+import cookieFetcher from './Middlewares/AuthUser.js';
+import userProtectedRout from './Routes/user.protected.routes.js'
+import upload from './Middlewares/Multer.js';
 
-app.use('/api/v1/user' , userRouter);
+app.use('/api/v2/auth' , userRouter);
+
+app.use(cookieFetcher);
+
+app.use('/api/v2/user' , userProtectedRout);
+
+app.use('/api/v2/trip' , tripRouter)
 
 export default app;

@@ -15,9 +15,24 @@ const tripSchema = new Schema({
         required : true,
         minLength : 500
     },
-    locations : [{
-        type : String
-    }]
+    
+    destinations : [{
+        type : String,
+    }],
+
+    totalDist : {
+        type : Number,
+    },
+
+    budget : {
+        type : Number,
+    },
+
+    createdBy : {
+        type : Schema.Types.ObjectId,
+        ref : 'User'
+    }
+
 },{
     timestamps : true
 });

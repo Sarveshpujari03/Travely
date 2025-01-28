@@ -22,9 +22,19 @@ const UserSchema = new Schema({
         minLength : 6
     },
 
-    trip : {
-        type : Schema.Types.ObjectId,
-        ref : 'Trip'
+    email : {
+        type : String,
+        required : true,
+    },
+
+    avatarUrl : {
+        type : String
+    },
+
+    mobNo : {
+        type : Number,
+        minLength : 10,
+        maxLength : 10
     },
 
     refreshToken : {
