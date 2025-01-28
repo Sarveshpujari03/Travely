@@ -10,12 +10,14 @@ const Home = () => {
   return (
     <>
       <ScrollProvider>
-        <div className="px-10 h-screen font-gilroy">
+        <div className="font-gilroy">
           <Header />
-          <HeroSection />
-          <AboutSection />
-          <FeaturesSection />
-          <Footer />
+          <div className="px-10 h-screen font-gilroy">
+            <HeroSection />
+            <AboutSection />
+            <FeaturesSection />
+            <Footer />
+          </div>
         </div>
       </ScrollProvider>
     </>

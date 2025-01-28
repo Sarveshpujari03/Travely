@@ -4,7 +4,7 @@ import Button from "../../Common/Button/Button";
 
 const Header = () => {
   return (
-    <div className="py-5 flex justify-between items-center">
+    <div className="px-10 py-5 flex justify-between items-center border-b-[1px] border-black">
       <p>
         <img src="./src/assets/HeroSection/Logo.png" alt="" className="h-6" />
       </p>
