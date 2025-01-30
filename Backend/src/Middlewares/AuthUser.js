@@ -6,13 +6,14 @@ import { cookieOptions } from '../constants.js';
 const cookieFetcher = async (req , res ,next) => {
     try {
     
-        const accessToken = await req.cookies.accessToken || req.headers
+        const accessToken = await req.cookies.accessToken
+        // console.log('enteres here' , accessToken);
         
         if(!accessToken){
             throw new ErrorHandler( 401 , "unAuthorized req" )
         }
 
-        const accessTokenSimplified = await jwt.verify(accessToken , process.env.ACCESS_TOKEN_SECRET_KEY , cookieOptions);
+        const accessTokenSimplified = jwt.verify(accessToken , process.env.ACCESS_TOKEN_SECRET_KEY , cookieOptions);
 
         if(!accessTokenSimplified){
             throw new ErrorHandler( 401 , "unauthorized req" )

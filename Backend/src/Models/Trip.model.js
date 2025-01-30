@@ -13,7 +13,6 @@ const tripSchema = new Schema({
     description : {
         type : String,
         required : true,
-        minLength : 500
     },
     
     destinations : [{
@@ -31,6 +30,11 @@ const tripSchema = new Schema({
     createdBy : {
         type : Schema.Types.ObjectId,
         ref : 'User'
+    },
+
+    completed : {
+        type : Boolean,
+        default : false
     }
 
 },{
