@@ -1,8 +1,8 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import LogInPage from "./Pages/LogInPage/LogInPage";
-import SignUpPage from "./Pages/SignUpPage/SignUpPage";
 import Home from "./Pages/Home/Home";
+import CurrentTrip from "./Pages/CurrentTrip/CurrentTrip";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -15,11 +15,15 @@ const App = () => {
       element: <LogInPage />,
     },
     {
-      path: "/signup",
-      element: <SignUpPage />,
+      path: "/currenttrip",
+      element: <CurrentTrip />,
     },
   ]);
-  return <div>App</div>;
+  return (
+    <div>
+      <RouterProvider router={router} />
+    </div>
+  );
 };
 
 export default App;
