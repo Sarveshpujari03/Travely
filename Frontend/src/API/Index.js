@@ -1,11 +1,14 @@
 import axios from 'axios'
 
-const baseUrl = axios.create(`${import.meta.env.VITE_BACKEND_SERVER}`);
+const baseUrl = axios.create({
+    baseURL : `${import.meta.env.VITE_BACKEND_SERVER}`,
+    withCredentials : true
+});
 
 //user routes
 
-const userRegistration = async (data) => await baseUrl.post('/user/register' , data);
-const userlogin = async (data) => await baseUrl.post('/user/login' , data);
+const userRegistration = async (data) => await baseUrl.post('/auth/register' , data);
+const userlogin = async (data) => await baseUrl.post('/auth/signin' , data);
 
 //protected user routes
 

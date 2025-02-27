@@ -95,7 +95,7 @@ const saveTrip = AsyncHandler ( async ( req , res ) => {
 
 })
 
-const completed = AsyncHnadler( async (req , res)  => {
+const completed = AsyncHandler( async (req , res)  => {
 
     const { title } = req.body
 

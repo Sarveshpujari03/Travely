@@ -3,3 +3,8 @@
 @tailwind utilities;
 
 @import "../public/fonts.css";
+
+*{
+    padding: 0;
+    margin: 0;
+}
