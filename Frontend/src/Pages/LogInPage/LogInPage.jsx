@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import '../../StyleSheets/Loginpage.css';
-import { useDispatch } from "react-redux";
+import {useSelector, useDispatch } from "react-redux";
 import { createUser } from "../../Slices/AuthneticationSlice.jsx";
 
 const LoginPage = () => {
-  const [isSignUpActive, setIsSignUpActive] = useState(false);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isSignUpActive, setIsSignUpActive] = useState(true);
   const [formData , setFormData] = useState({});
-
   const dispatch = useDispatch();
+  const { user, isLoading, isError, isSuccess } = useSelector(state => state.auth);
 
   const toggleSignUp = () => {
     setIsSignUpActive(true);
@@ -20,13 +18,9 @@ const LoginPage = () => {
   };
 
   const handleOnsubmit = async (e) => {
-    e.preventDefault();
-    console.log('here');
-    
-    const res = await dispatch(createUser(formData , false));
+    e.preventDefault();    
+    const res = await dispatch(createUser({formData , isSignUpActive}));
     console.log(res);
-    
-
   };
 
   return (
@@ -35,24 +29,20 @@ const LoginPage = () => {
       <div className="form-container sign-up">
         <form onSubmit={handleOnsubmit}>
           <h1 className="login">Create Account</h1>
-          <input className="login" type="text" placeholder="Name" required />
-          <input type="email" className="login" placeholder="Email" required />
+          <input className="login" type="text" placeholder="Name" required 
+          onChange={(e) => setFormData({...formData, name: e.target.value })}/>
+          <input type="email" className="login" placeholder="Email" required 
+          onChange={(e) => setFormData({...formData, email: e.target.value })}/>
           <input
             type="password"
             className="login"
-            placeholder="New Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            onChange={(e) => setFormData({...formData, password: e.target.value })}
             required
           />
-          <input
-            type="password"
-            className="login"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
+          {isLoading && <p className="">Loading...</p>}
+            {isSuccess && <p>Login successful! Welcome {user?.displayName}</p>}
+            {isError && <p style={{ color: "red" }}>❌ {isError}</p>}
           <button type="submit">Create</button>
         </form>
       </div>
@@ -65,6 +55,11 @@ const LoginPage = () => {
           <input className="login" type="password" placeholder="Password" required 
           onChange={(e) => setFormData({...formData, password: e.target.value })}
           />
+          
+            {isLoading && <p className="">Loading...</p>}
+            {isSuccess && <p>Login successful! Welcome {user?.displayName}</p>}
+            {isError && <p style={{ color: "red" }}>❌ {isError}</p>}
+          
           <a href="#">Forget Your Password?</a>
           <button type="submit" onClick={toggleLogin}>Login</button>
         </form>
@@ -84,6 +79,9 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+
+            
+
     </div>
   );
 };

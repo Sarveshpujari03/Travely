@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {planTrip} from '../../API/Index.js' 
+import {planTrip} from '../../API/Index.js'
 import ReactMarkDown from 'react-markdown'
 import Button from '../../Components/Common/Button/Button.jsx';
 

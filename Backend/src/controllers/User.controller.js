@@ -34,7 +34,7 @@ const userRegistration = AsyncHandler ( async (req , res) => {
 
     const { displayName , password ,email ,mobNo } = req.body;
 
-    if(!displayName || !password || (!email || !mobNo)){
+    if(!displayName || !password || (!email )){
         throw new ErrorHandler(401 , "All Info needed");
     }
 
@@ -47,20 +47,18 @@ const userRegistration = AsyncHandler ( async (req , res) => {
     }
 
     
-    let avatarUrl;
-    if (req.files.Cover>0) {
-        const avatar = req.files?.Avatar[0]?.path
-        avatarUrl = await uploadFile(avatar);
-    } else {
-        avatarUrl = "";
-    }
-
+    // let avatarUrl;
+    // if (req.files.Cover>0) {
+    //     const avatar = req.files?.Avatar[0]?.path
+    //     avatarUrl = await uploadFile(avatar);
+    // } else {
+    //     avatarUrl = "";
+    // }
+    
     const user = await User.create({
         displayName,
         password,
-        email,
-        mobNo,
-        avatarUrl
+        email
     })
 
     if(!user){
@@ -94,7 +92,7 @@ const userLogin = AsyncHandler( async ( req , res ) => {
     const passwordVerification = await user.passwordVerification(password);
 
     if(!passwordVerification){
-        throw new ErrorHandler(400 , "password is incorrect" )
+        throw new ErrorHandler(400 , "password is incorrect",["password is incorrect"] )
     }
 
     const { accessToken , refreshToken } = await AccessTokenRefreshTokenGeneration(user._id);

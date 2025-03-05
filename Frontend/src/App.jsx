@@ -1,33 +1,29 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter, RouterProvider, Routes, createBrowserRouter,Route } from "react-router-dom";
 import LogInPage from "./Pages/LogInPage/LogInPage";
 import Home from "./Pages/Home/Home";
 import CurrentTrip from "./Pages/CurrentTrip/CurrentTrip";
 import PlanTrip from './Pages/PlanTrip/PlanTrip.jsx'
+import ProtectedRoutes from "./Utility/ProtectedRoutes.jsx";
 
 const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/login",
-      element: <LogInPage />,
-    },
-    {
-      path: "/currenttrip",
-      element: <CurrentTrip />,
-    },
-    {
-      path: "/planTrip",
-      element: <PlanTrip />
-    }
-  ]);
+
+  //Added ProtectedRoutes to the Routes
+
   return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route  path="/" element={<Home/>}/>
+        <Route  path="/login" element={<LogInPage/>}/>
+        <Route element={<ProtectedRoutes/>}>
+          <Route path="/currenttrip" element={<CurrentTrip/>}/>
+          <Route path="/plantrip" element={<PlanTrip/>}/>
+        </Route>
+
+      </Routes>
+    
+    
+    </BrowserRouter>
   );
 };
 

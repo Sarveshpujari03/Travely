@@ -1,0 +1,9 @@
+.herSec {
+    background: url('../assets/HeroSection/MainBG.jpg');
+    object-fit : fill;
+    background-size:cover;
+}
+
+.info{
+    background-color: black;
+}

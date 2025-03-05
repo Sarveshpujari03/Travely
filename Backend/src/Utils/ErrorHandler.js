@@ -9,7 +9,9 @@ class ErrorHandler extends Error {
         this.status = status;
         this.error = error;
         this.stack = stack;
+        Error.captureStackTrace(this, this.constructor);
     }
+
 }
 
 export default ErrorHandler
