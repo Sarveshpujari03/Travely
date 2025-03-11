@@ -7,11 +7,11 @@ import animation from "../../Utility/GSAP";
 const Navbar = () => {
   const { aboutRef, featureRef, scrollToSection, reviewRef, faqRef } = useContext(ScrollContext);
 
-  animation('#btns' , {
-    opacity:0,
-    y: -100,
-    duration: 1
-  })
+  // animation('#btns' , {
+  //   opacity:0,
+  //   y: -100,
+  //   duration: 1
+  // })
 
 
   return (

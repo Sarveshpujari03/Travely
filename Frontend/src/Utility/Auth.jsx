@@ -8,10 +8,15 @@ function Auth() {
   if (cookies.cookie_name) {
     // Cookie is set
     console.log('Cookie is set:', cookies.cookie_name);
+    localStorage.setItem('isLoggedIn', true);
   } else {
     // Cookie is not set
+    console.log('Cookie is not set');
+    localStorage.setItem('isLoggedIn', false);
     
   }
+  console.log(localStorage.getItem('isLoggedIn'));
+  
 
   return (
     

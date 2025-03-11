@@ -3,15 +3,33 @@ import { useContext } from "react";
 import { ArrowRight, Globe, Clock, Sparkles } from "lucide-react";
 import { ScrollContext } from "../../../../store/ScrollContext";
 import Button from "../../../../Components/Common/Button/Button";
+import animation, { scrollAni } from "../../../../Utility/GSAP";
+import Auth from "../../../../Utility/Auth";
 const AboutSection = () => {
   const { aboutRef } = useContext(ScrollContext);
+
+  animation('#aboutAni',{
+    opacity:1,
+    y : 300,
+    scrollTrigger: {
+      trigger: '#sec1',
+      start: "top 70%",
+      end: "bottom 70%",
+      scrub: 1,
+    },
+    ease: "power2"
+  })
+
+  Auth();
+
   return (
     <div
       className="min-h-screen bg-white py-16 px-4 font-gilroy"
       ref={aboutRef}
+      
     >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" id="sec1">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             Your Personal AI Travel Companion
           </h2>
@@ -22,7 +40,7 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 mb-16" id="aboutAni" >
           <div className="bg-orange-50 p-6 rounded-xl">
             <Globe className="w-12 h-12 text-orange-500 mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-2">

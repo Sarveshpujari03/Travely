@@ -10,16 +10,16 @@ const HeroSection = () => {
 
   gsap.registerPlugin(useGSAP);
 
-  useGSAP(() => {
+  // useGSAP(() => {
 
-    gsap.from('#main' , {
-      duration: 1,
-      y: 300,
-      opacity :0,
-      ease: "power2.inOut",
-    })
+  //   gsap.from('#main' , {
+  //     duration: 1,
+  //     y: 300,
+  //     opacity :0,
+  //     ease: "power2.inOut",
+  //   })
 
-  })
+  // })
 
   return (
     <div className="h-[90%] herSec flex justify-between items-center w-full">

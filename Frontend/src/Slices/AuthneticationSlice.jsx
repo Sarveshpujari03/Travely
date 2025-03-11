@@ -1,39 +1,34 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { userlogin, userRegistration } from '../API/Index';
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser } from './userSlice';
 
 export const createUser = createAsyncThunk('createUser', async (data, { rejectWithValue }) => {
     try {
-        if(data.setIsSignUpActive){
-            console.log(data);
+        if(!data.isSignUpActive){
             
             const backendData = {
-                displayName: data.name,
-                password: data.password,
+                displayName: data.formData.name,
+                password: data.formData.password,
             };
             const res = await userlogin(backendData);
-            
-            console.log("Backend Response:", res);
-            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('isLoggedIn' , true);
             return res.data;
             
         }
 
-        if(!data.setIsSignUpActive){  
-            console.log(data);         
+        if(data.isSignUpActive){        
             const backendData = {
                 displayName: data.formData.name,
                 password: data.formData.password,
                 email : data.formData.email
             };
             const res = await userRegistration(backendData);
-            
-            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('isLoggedIn' , true);
             return res.data;
         }
         
     } catch (error) {
-        console.error("Error in AsyncThunk:", error);
-
         if (error.response) {
             return rejectWithValue(error.response.data?.message || "Server error occurred");
         } else if (error.request) {
@@ -64,7 +59,8 @@ const authenticationSlice = createSlice({
         });
         builder.addCase(createUser.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.user = action.payload;
+            state.user = action.payload.data.displayName;
+            // useDispatch(setUser({displayName: action.payload.data.displayName, cookies: true}));
             state.isSuccess = true;
         });
         builder.addCase(createUser.rejected, (state, action) => {

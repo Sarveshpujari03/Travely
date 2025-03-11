@@ -19,7 +19,7 @@ const LoginPage = () => {
 
   const handleOnsubmit = async (e) => {
     e.preventDefault();    
-    const res = await dispatch(createUser({formData , isSignUpActive}));
+    const res = dispatch(createUser({formData , isSignUpActive}));
     console.log(res);
   };
 
